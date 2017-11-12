@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a file.
+BOX2D_INCLUDE_DIR:PATH=BOX2D_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+BOX2D_LIBRARY:FILEPATH=BOX2D_LIBRARY-NOTFOUND
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -195,6 +201,10 @@ ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: BOX2D_INCLUDE_DIR
+BOX2D_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BOX2D_LIBRARY
+BOX2D_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created

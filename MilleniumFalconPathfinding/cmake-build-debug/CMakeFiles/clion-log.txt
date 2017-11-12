@@ -1,5 +1,6 @@
 /home/esteban/clion-2017.1.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/esteban/MilleniumFalconPathfinding
 LIBRARIES = 
+-- Could NOT find Box2D (missing:  BOX2D_LIBRARY BOX2D_INCLUDE_DIR) 
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/esteban/MilleniumFalconPathfinding/cmake-build-debug

@@ -31,8 +31,7 @@ Asteroide *asteroide1, *asteroide2,*asteroide3, *asteroide4, *asteroide5, *aster
 DeathStar *estrella;
 Pathfinding *pathfinding;
 int** zoneSolids = new int*[2];//Da los sólidos de la zona
-int padondevaFila = 5, padondevaColumna = 13; //Poner donde vaaaaa<-------------------------------------------------
-//int asteroideFila = asteroide1.getcurrentRow();
+int padondevaFila = 5, padondevaColumna = 13;
 //Constantes definidas (Colores, dimensiones, medidas, entre otros)
 #define screen_width 850
 #define screen_height 600
@@ -62,36 +61,13 @@ void calculatePath2(Entity *entity, Mapa *map){
         }
     }
 
-    PList<PList<int>> path2 = pathfinding->getPath(zoneSolids, map->getRows(), map->getColumns(), entity->getCurrentRow(), entity->getCurrentColumn(), 6, 0);
+    PList<PList<int>> path2 = pathfinding->getPath(zoneSolids, map->getRows(), map->getColumns(), entity->getCurrentRow(), entity->getCurrentColumn(), 0, 0);
 
     for (int m = 0; m < path2.size(); ++m) {
         cout << path2.get(m).get(0) << " " << path2.get(m).get(1) << endl;
         entity->moveAt(path2.get(m).get(0),path2.get(m).get(1));
     }
 }
-
-/*void addTowers(Mapa *zone, Falcon *falcon){
-    int r, c, t = 0;
-    zone;
-    while(t<3) {
-        r = rand() % zone->getRows();
-        c = rand() % zone->getColumns();
-        if (zoneSolids[r][c] != 1 && !(r == 2 & (c == 0 || c == 9))) {
-            zoneSolids[r][c] = 1;
-            if (!pathfinding->getPath(zoneSolids, zone->getRows(), zone->getColumns(), falcon->getCurrentRow(), falcon->getCurrentColumn(), 2, 9).isEmpty()) {
-                tieFighters->Insert(new TieFighters("TIEFighters.png", r, c, 50, 70, zone));
-                zone->setSolidTiledAt(r, c, 1);
-            }
-            t++;
-        }
-    }
-}
-
-void drawTowers(){
-    for (int t = 0; t < tieFighters->length(); ++t) {
-        tieFighters->Get(t)->draw();
-    }
-}*/
 
 void initialize(){
     al_init();//Inicia componentes básicos para usar alegro
@@ -121,31 +97,31 @@ void initialize(){
     zone->addBitmap("Fondo.png");
     zone->setBackground(map,',','/');
 
-    falcon = new Falcon("MilleniumFalcon.png", 1, 1, 50, 50, zone);
+    falcon = new Falcon("MilleniumFalcon.png", 1, 2, 50, 50, zone);
     falcon->addAnimation("RIGHT",0,4);
     falcon->addAnimation("LEFT",1,4);
     falcon->addAnimation("DOWN",2,4);
     falcon->addAnimation("UP",3,4);
 
-    tieFighters = new TieFighters("TIEFighters.png", 6, 10, 50, 50, zone);
+    tieFighters = new TieFighters("TIEFighters.png", 9, 0, 50, 50, zone);
     tieFighters->addAnimation("RIGHT",0,4);
     tieFighters->addAnimation("LEFT",1,4);
     tieFighters->addAnimation("DOWN",2,4);
     tieFighters->addAnimation("UP",3,4);
 
-    tieFighters2 = new TieFighters("TIEFighters.png", 4, 12, 50, 50, zone);
+    tieFighters2 = new TieFighters("TIEFighters.png", 6, 3, 50, 50, zone);
     tieFighters2->addAnimation("RIGHT",0,4);
     tieFighters2->addAnimation("LEFT",1,4);
     tieFighters2->addAnimation("DOWN",2,4);
     tieFighters2->addAnimation("UP",3,4);
 
-    tieFighters3 = new TieFighters("TIEFighters.png", 7, 3, 50, 50, zone);
+    tieFighters3 = new TieFighters("TIEFighters.png", 1, 0, 50, 50, zone);
     tieFighters3->addAnimation("RIGHT",0,4);
     tieFighters3->addAnimation("LEFT",1,4);
     tieFighters3->addAnimation("DOWN",2,4);
     tieFighters3->addAnimation("UP",3,4);
 
-    asteroide1 = new Asteroide("Asteroide.png", 7, 10, 40, 40, zone);
+    asteroide1 = new Asteroide("Asteroide.png", 3, 10, 40, 40, zone);
     asteroide1->addAnimation("RIGHT",0,4);
     asteroide1->addAnimation("LEFT",1,4);
     asteroide1->addAnimation("DOWN",2,4);

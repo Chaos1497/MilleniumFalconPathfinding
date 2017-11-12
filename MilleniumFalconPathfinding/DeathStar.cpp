@@ -8,7 +8,3 @@ DeathStar::DeathStar(char *resource, int row, int column, int width, int height,
 void DeathStar::draw() {
     Entity::draw();
 }
-
-void DeathStar::setRange(int range){
-    this->range = range;
-}

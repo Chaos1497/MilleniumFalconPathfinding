@@ -11,6 +11,7 @@ private:
     PList<Node*>* _openSet;
     PList<Node*>* _closeSet;
     PList<Node*>* _path;
+    PList<Node*>* _pos;
 
     //Methods
     double calculateHeuristics(Node*, Node*);
@@ -18,6 +19,7 @@ private:
     bool inCloseSet(Node*);
     void initiateNodesMap(int**, int, int);
     void cleanLists();
+    bool Posiciones(Node*);
 public:
     Pathfinding();
     ~Pathfinding();

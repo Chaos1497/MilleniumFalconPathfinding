@@ -8,13 +8,13 @@ Pathfinding::Pathfinding() {
 
 Pathfinding::~Pathfinding() {}
 
-double Pathfinding::calculateHeuristics(Node* pStartNode, Node* pEndNode) {
+double Pathfinding::calculateHeuristics(Node* pStartNode, Node* pEndNode){
     int x = pEndNode->getPosI() - pStartNode->getPosI();
     int y = pEndNode->getPosJ() - pStartNode->getPosJ();
     return std::sqrt((x*x) + (y*y));
 }
 
-bool Pathfinding::inOpenSet(Node* pNode) {
+bool Pathfinding::inOpenSet(Node* pNode){
     for(int i = 0; i < this->_openSet->size(); i++) {
         if(this->_openSet->get(i) == pNode)
             return true;
@@ -56,6 +56,15 @@ void Pathfinding::cleanLists() {
     this->_path->clear();
 }
 
+bool Pathfinding::Posiciones(Node* pNode){
+    for(int i = 0; i < this->_pos->size(); i++) {
+        if(this->_pos->get(i) == pNode)
+            return true;
+    }
+    cout<<pNode<<endl;
+    return false;
+}
+
 PList<PList<int>> Pathfinding::getPath(int** pMap, int pRows, int pColumns, int pStartI, int pStartJ, int pEndI, int pEndJ) {
     this->initiateNodesMap(pMap, pRows, pColumns);
     Node* startNode = this->_nodeMap[pStartI][pStartJ];
@@ -81,14 +90,16 @@ PList<PList<int>> Pathfinding::getPath(int** pMap, int pRows, int pColumns, int 
             this->_path->insert(tempNode);
             //If the temporary node has a previous node
             while(tempNode->getPreviousNode()) {
+                //cout<<tempNode;
+                //Posiciones(tempNode);
                 //Inserts the temporary node into the path list
                 this->_path->insert(tempNode->getPreviousNode());
                 //The temporary node will be the previous to the current
                 tempNode = tempNode->getPreviousNode();
+                //Posiciones(tempNode);
             }
             break;
         }
-
         //Removes the winning node (best node) in the list of nodes for evaluating
         this->_openSet->remove(bestNodePosition);
         //Inserts the winning node (best node) into the list of nodes already evaluated
