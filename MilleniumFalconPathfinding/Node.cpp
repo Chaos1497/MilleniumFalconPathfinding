@@ -13,7 +13,6 @@ Node::Node(int pPosI, int pPosJ, bool pWall) {
 
 }
 Node::~Node() {
-    //?????
 }
 
 

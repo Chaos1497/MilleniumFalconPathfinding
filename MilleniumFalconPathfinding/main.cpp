@@ -25,9 +25,8 @@ ALLEGRO_BITMAP *player_sprite;
 ALLEGRO_KEYBOARD_STATE keyState;
 Mapa *zone;
 Falcon *falcon;
-//List<TieFighters*> *tieFighters = new List<TieFighters*>();
 TieFighters *tieFighters, *tieFighters2, *tieFighters3;
-Asteroide *asteroide1, *asteroide2,*asteroide3, *asteroide4, *asteroide5, *asteroide6, *asteroide7, *asteroide8;
+Asteroide *asteroide1, *asteroide2,*asteroide3, *asteroide4, *asteroide5, *asteroide6, *asteroide7, *asteroide8, *asteroide9, *asteroide10;
 DeathStar *estrella;
 Pathfinding *pathfinding;
 int** zoneSolids = new int*[2];//Da los sólidos de la zona
@@ -45,9 +44,7 @@ void calculatePath(Entity *entity, Mapa *map){
             zoneSolids[r][c] = map->getTiledAt(r,c).getIsSolid();
         }
     }
-
     PList<PList<int>> path = pathfinding->getPath(zoneSolids, map->getRows(), map->getColumns(), entity->getCurrentRow(), entity->getCurrentColumn(), padondevaFila, padondevaColumna);
-
     for (int m = 0; m < path.size(); ++m) {
         cout << path.get(m).get(0) << " " << path.get(m).get(1) << endl;
         entity->moveAt(path.get(m).get(0),path.get(m).get(1));
@@ -60,9 +57,7 @@ void calculatePath2(Entity *entity, Mapa *map){
             zoneSolids[r][c] = map->getTiledAt(r,c).getIsSolid();
         }
     }
-
     PList<PList<int>> path2 = pathfinding->getPath(zoneSolids, map->getRows(), map->getColumns(), entity->getCurrentRow(), entity->getCurrentColumn(), 0, 0);
-
     for (int m = 0; m < path2.size(); ++m) {
         cout << path2.get(m).get(0) << " " << path2.get(m).get(1) << endl;
         entity->moveAt(path2.get(m).get(0),path2.get(m).get(1));
@@ -103,7 +98,7 @@ void initialize(){
     falcon->addAnimation("DOWN",2,4);
     falcon->addAnimation("UP",3,4);
 
-    tieFighters = new TieFighters("TIEFighters.png", 9, 0, 50, 50, zone);
+    tieFighters = new TieFighters("TIEFighters.png", 9, 2, 50, 50, zone);
     tieFighters->addAnimation("RIGHT",0,4);
     tieFighters->addAnimation("LEFT",1,4);
     tieFighters->addAnimation("DOWN",2,4);
@@ -121,23 +116,65 @@ void initialize(){
     tieFighters3->addAnimation("DOWN",2,4);
     tieFighters3->addAnimation("UP",3,4);
 
-    asteroide1 = new Asteroide("Asteroide.png", 3, 10, 40, 40, zone);
+    asteroide1 = new Asteroide("Asteroide.png", 0, 12, 40, 40, zone);
     asteroide1->addAnimation("RIGHT",0,4);
     asteroide1->addAnimation("LEFT",1,4);
     asteroide1->addAnimation("DOWN",2,4);
     asteroide1->addAnimation("UP",3,4);
 
-    asteroide2 = new Asteroide("Asteroide.png", 9, 13, 40, 40, zone);
+    asteroide2 = new Asteroide("Asteroide.png", 1, 13, 40, 40, zone);
     asteroide2->addAnimation("RIGHT",0,4);
     asteroide2->addAnimation("LEFT",1,4);
     asteroide2->addAnimation("DOWN",2,4);
     asteroide2->addAnimation("UP",3,4);
 
-    asteroide3 = new Asteroide("Asteroide.png", 2, 13, 40, 40, zone);
+    asteroide3 = new Asteroide("Asteroide.png", 2, 12, 40, 40, zone);
     asteroide3->addAnimation("RIGHT",0,4);
     asteroide3->addAnimation("LEFT",1,4);
     asteroide3->addAnimation("DOWN",2,4);
     asteroide3->addAnimation("UP",3,4);
+
+    asteroide4 = new Asteroide("Asteroide.png", 3, 13, 40, 40, zone);
+    asteroide4->addAnimation("RIGHT",0,4);
+    asteroide4->addAnimation("LEFT",1,4);
+    asteroide4->addAnimation("DOWN",2,4);
+    asteroide4->addAnimation("UP",3,4);
+
+    asteroide5 = new Asteroide("Asteroide.png", 4, 12, 40, 40, zone);
+    asteroide5->addAnimation("RIGHT",0,4);
+    asteroide5->addAnimation("LEFT",1,4);
+    asteroide5->addAnimation("DOWN",2,4);
+    asteroide5->addAnimation("UP",3,4);
+
+    asteroide6 = new Asteroide("Asteroide.png", 5, 13, 40, 40, zone);
+    asteroide6->addAnimation("RIGHT",0,4);
+    asteroide6->addAnimation("LEFT",1,4);
+    asteroide6->addAnimation("DOWN",2,4);
+    asteroide6->addAnimation("UP",3,4);
+
+    asteroide7 = new Asteroide("Asteroide.png", 6, 12, 40, 40, zone);
+    asteroide7->addAnimation("RIGHT",0,4);
+    asteroide7->addAnimation("LEFT",1,4);
+    asteroide7->addAnimation("DOWN",2,4);
+    asteroide7->addAnimation("UP",3,4);
+
+    asteroide8 = new Asteroide("Asteroide.png", 7, 13, 40, 40, zone);
+    asteroide8->addAnimation("RIGHT",0,4);
+    asteroide8->addAnimation("LEFT",1,4);
+    asteroide8->addAnimation("DOWN",2,4);
+    asteroide8->addAnimation("UP",3,4);
+
+    asteroide9 = new Asteroide("Asteroide.png", 8, 12, 40, 40, zone);
+    asteroide9->addAnimation("RIGHT",0,4);
+    asteroide9->addAnimation("LEFT",1,4);
+    asteroide9->addAnimation("DOWN",2,4);
+    asteroide9->addAnimation("UP",3,4);
+
+    asteroide10 = new Asteroide("Asteroide.png", 9, 13, 40, 40, zone);
+    asteroide10->addAnimation("RIGHT",0,4);
+    asteroide10->addAnimation("LEFT",1,4);
+    asteroide10->addAnimation("DOWN",2,4);
+    asteroide10->addAnimation("UP",3,4);
 
     estrella = new DeathStar("DeathStar.png",5,14,80,80,zone);
 
@@ -148,6 +185,13 @@ void initialize(){
     calculatePath2(asteroide1,zone);
     calculatePath2(asteroide2,zone);
     calculatePath2(asteroide3,zone);
+    calculatePath2(asteroide4,zone);
+    calculatePath2(asteroide5,zone);
+    calculatePath2(asteroide6,zone);
+    calculatePath2(asteroide7,zone);
+    calculatePath2(asteroide8,zone);
+    calculatePath2(asteroide9,zone);
+    calculatePath2(asteroide10,zone);
 }
 
 //Manejador de eventos. Aquí se establecen y administran eventos de teclado, mouse, display, entre otros.
@@ -184,6 +228,13 @@ int main() {
         asteroide1->draw();
         asteroide2->draw();
         asteroide3->draw();
+        asteroide4->draw();
+        asteroide5->draw();
+        asteroide6->draw();
+        asteroide7->draw();
+        asteroide8->draw();
+        asteroide9->draw();
+        asteroide10->draw();
         estrella->draw();
         loop();
     }
